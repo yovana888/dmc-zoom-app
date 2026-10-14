@@ -27,7 +27,13 @@
                 "input": "public"
               }
             ],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/app/shared/styles/colors.scss",
+              "src/app/shared/styles/scroll.scss",
+              "src/app/shared/styles/size.scss",
+              "src/styles.scss"
+            ],
             "sourceMap": false
           },
           "configurations": {

@@ -1,0 +1,30 @@
+*::-webkit-scrollbar {
+  width: var(--size-sm);
+  height: var(--size-sm);
+  background: var(--light-greyscale-scroll-bar);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--light-greyscale-scroll-bar);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--light-greyscale-scroll-bar);
+  border-radius: var(--size-xs);
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--light-greyscale-scroll-bar);
+}
+
+// Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--light-greyscale-scroll-bar) transparent;
+}
