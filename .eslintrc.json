@@ -17,7 +17,7 @@
         "project": ["tsconfig.json", "tsconfig.app.json", "tsconfig.spec.json"],
         "sourceType": "module"
       },
-      "plugins": ["@typescript-eslint", "@angular-eslint", "rxjs"],
+      "plugins": ["@typescript-eslint", "@angular-eslint"],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -78,9 +78,6 @@
         ],
         "@angular-eslint/no-empty-lifecycle-method": "error",
         "@angular-eslint/use-lifecycle-interface": "error",
-        "rxjs/no-implicit-any-catch": "off",
-        "rxjs/no-ignored-observable": "error",
-        "rxjs/no-unbound-methods": "error",
         "no-restricted-syntax": [
           "error",
           {
@@ -135,8 +132,6 @@
         "no-magic-numbers": "off",
         "max-lines": "off",
         "max-lines-per-function": "off",
-        "rxjs/no-ignored-observable": "off",
-        "rxjs/no-implicit-any-catch": "off",
         "jest/no-disabled-tests": "error",
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error"
