@@ -29,9 +29,13 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fontsource/mulish/latin-400.css",
+              "node_modules/@fontsource/mulish/latin-700.css",
+              "node_modules/@fontsource/mulish/latin-800.css",
               "src/app/shared/styles/colors.scss",
               "src/app/shared/styles/scroll.scss",
               "src/app/shared/styles/size.scss",
+              "src/app/shared/styles/typography.scss",
               "src/styles.scss"
             ],
             "sourceMap": false
