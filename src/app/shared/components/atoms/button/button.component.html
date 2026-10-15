@@ -1,0 +1,16 @@
+<button
+  class="button"
+  type="button"
+  [attr.data-variant]="variant()"
+  [attr.data-size]="size()"
+  [attr.data-full]="full() ? 'true' : null"
+  [disabled]="disabled()"
+>
+  @if (icon() === 'left' && iconName()) {
+    <ng-icon [svg]="iconName()" [size]="iconSize()" aria-hidden="true" />
+  }
+  <span class="label"><ng-content /></span>
+  @if (icon() === 'right' && iconName()) {
+    <ng-icon [svg]="iconName()" [size]="iconSize()" aria-hidden="true" />
+  }
+</button>
