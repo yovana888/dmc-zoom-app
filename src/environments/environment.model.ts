@@ -6,5 +6,6 @@ export interface ZoomEnvironment {
 export interface AppEnvironment {
   production: boolean;
   apiMicroserviceIA: string;
+  apiKey: string;
   zoom: ZoomEnvironment;
 }
