@@ -9,7 +9,7 @@ import { AssistantHttpService } from './assistant-http.service';
 export class FinalKitService {
   private readonly http = inject(AssistantHttpService);
 
-  generate(request: SessionRequest): Observable<FinalKitResponse> {
-    return this.http.post<FinalKitResponse>(ASSISTANT_API_PATH.finalKit, request);
+  generate(request: SessionRequest, minuto: number): Observable<FinalKitResponse> {
+    return this.http.post<FinalKitResponse>(ASSISTANT_API_PATH.finalKit, request, { minuto });
   }
 }

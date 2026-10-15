@@ -41,6 +41,7 @@
     "@fontsource/mulish": "^5.3.0",
     "@ng-icons/core": "^32.5.0",
     "@ng-icons/phosphor-icons": "^32.5.0",
+    "@syncfusion/ej2-angular-diagrams": "^35.1.39",
     "@zoom/appssdk": "^0.16.42",
     "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",

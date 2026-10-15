@@ -26,6 +26,12 @@
   border-radius: 0;
 }
 
+.dialog-wrap[data-size='full'] .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .dialog-scroll {
   max-height: 80vh;
   overflow: hidden;

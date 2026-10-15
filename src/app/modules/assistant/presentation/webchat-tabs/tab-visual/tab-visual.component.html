@@ -1,5 +1,20 @@
 <div class="visual">
   @for (chip of chips; track chip.tone) {
-    <button class="chip" type="button" [attr.data-tone]="chip.tone">{{ chip.label }}</button>
+    <button
+      class="chip"
+      type="button"
+      [attr.data-tone]="chip.tone"
+      [disabled]="isLoading()"
+      (click)="openChip(chip)"
+    >
+      {{ chip.label }}
+    </button>
   }
 </div>
+
+<app-mind-map-modal
+  [nodes]="mindNodes()"
+  [connectors]="mindConnectors()"
+  [message]="mindMessage()"
+/>
+<app-flashcard-modal [cards]="flashcards()" [message]="flashMessage()" />

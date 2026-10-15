@@ -18,4 +18,5 @@ export interface FinalKitResponse {
   resumen_ejecutivo: string;
   mapa_mental_json: MindMap;
   flashcards: Flashcard[];
+  minuto: number;
 }
