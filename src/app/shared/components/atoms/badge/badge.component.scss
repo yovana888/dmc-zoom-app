@@ -1,0 +1,35 @@
+:host {
+  display: inline-flex;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem var(--size-xs);
+  border: 1px solid transparent;
+  border-radius: var(--size-xs);
+  background: var(--light-assents-accent1-primary);
+  color: var(--light-greyscale-white);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-xs);
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-line-height-xs);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.badge[data-variant='active'] {
+  background: var(--light-assents-accent2-focus);
+}
+
+.badge[data-variant='outline'] {
+  background: transparent;
+  border-color: var(--light-greyscale-stroke);
+  color: var(--light-greyscale-text-secondary);
+}
+
+.badge[data-variant='disabled'] {
+  background: var(--light-greyscale-disabled-text);
+  color: var(--light-greyscale-disabled-bg);
+}
