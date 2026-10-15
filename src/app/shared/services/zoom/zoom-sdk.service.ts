@@ -3,6 +3,7 @@ import zoomSdk, {
   ConfigResponse,
   GetMeetingContextResponse,
   GetUserContextResponse,
+  Participant,
   RunningContext,
 } from '@zoom/appssdk';
 import { environment } from '@environments/environment';
@@ -42,6 +43,15 @@ export class ZoomSdkService {
       await this.loadContexts();
     } catch {
       this.readyState.set(false);
+    }
+  }
+
+  async listParticipants(): Promise<Participant[]> {
+    try {
+      const response = await zoomSdk.getMeetingParticipants();
+      return response.participants;
+    } catch {
+      return [];
     }
   }
 

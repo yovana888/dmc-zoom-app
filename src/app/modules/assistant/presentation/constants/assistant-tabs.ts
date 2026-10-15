@@ -25,10 +25,6 @@ export const ASSISTANT_TABS_TEACHER: SelectOptionModel[] = [
     value: 'assistant',
   },
   {
-    label: 'Resumen visual',
-    value: 'visual',
-  },
-  {
     label: 'Notas',
     value: 'notes',
   },

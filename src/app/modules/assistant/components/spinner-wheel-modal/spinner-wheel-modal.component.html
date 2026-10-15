@@ -1,0 +1,79 @@
+<app-modal-message
+  [id]="modalId"
+  size="lg"
+  title="Ruleta de participación"
+  [nameButtonAction]="''"
+  [nameButtonClose]="''"
+>
+  @if (!names().length && !quiz() && notice()) {
+    <p class="message">{{ notice() }}</p>
+    @if (quizNotice()) {
+      <p class="message">{{ quizNotice() }}</p>
+    }
+  } @else {
+    <div class="layout">
+      <section class="column">
+        <p class="winner">{{ headline() }}</p>
+        @if (names().length) {
+          <div class="stage">
+            <div
+              class="disc"
+              [class.is-spinning]="spinning()"
+              [style.background]="background()"
+              [style.transform]="rotationStyle()"
+              (transitionend)="finishSpin($event)"
+            >
+              @for (slice of slices(); track $index) {
+                <span
+                  class="label"
+                  [attr.data-tone]="slice.tone"
+                  [attr.title]="slice.name"
+                  [style.transform]="slice.transform"
+                >
+                  {{ slice.name }}
+                </span>
+              }
+            </div>
+            <span class="hub"></span>
+            <span class="pointer"></span>
+          </div>
+        } @else {
+          <p class="message">{{ notice() }}</p>
+        }
+        <app-button
+          variant="primary"
+          size="sm"
+          [disabled]="spinning() || !names().length"
+          (click)="spin()"
+        >
+          Girar
+        </app-button>
+      </section>
+
+      <section class="column">
+        @if (quiz(); as quiz) {
+          <p class="question">{{ quiz.pregunta }}</p>
+          <ul class="options">
+            @for (option of quiz.opciones; track $index) {
+              <li
+                class="option"
+                [attr.data-tone]="tone($index)"
+                [class.is-answer]="isAnswer($index)"
+              >
+                <span>{{ option }}</span>
+                @if (isAnswer($index)) {
+                  <span class="mark">Correcta</span>
+                }
+              </li>
+            }
+          </ul>
+          <app-button variant="secondary" size="sm" [disabled]="revealed()" (click)="showAnswer()">
+            Mostrar respuesta
+          </app-button>
+        } @else {
+          <p class="message">{{ quizNotice() }}</p>
+        }
+      </section>
+    </div>
+  }
+</app-modal-message>

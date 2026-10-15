@@ -25,7 +25,17 @@ export const AREA_CHAT_CONVERSATION: Record<string, ChatMessageTemplateFactory> 
     id: crypto.randomUUID(),
     sender: 'agent',
     text: `Hola, ${username}\nAquí tienes algunos enlaces útiles para empezar.`,
-    chips: [],
+    chips: [
+      {
+        value: AssistantConversationEnum.QUIZ_RESPONSE_TIME,
+        label: 'Generar quiz relampago 🔥',
+      },
+
+      {
+        value: AssistantConversationEnum.SPINNER_WHEEL,
+        label: 'Lanzar ruleta de participación 🎰',
+      },
+    ],
     type: TypeChatItemEnum.TEXT,
   }),
 };
