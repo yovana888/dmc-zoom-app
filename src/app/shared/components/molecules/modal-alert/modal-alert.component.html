@@ -1,0 +1,43 @@
+<div class="modal-backdrop fade show"></div>
+
+<div
+  class="modal fade show"
+  role="dialog"
+  aria-modal="true"
+  tabindex="-1"
+  aria-labelledby="modal-alert-title"
+  aria-describedby="modal-alert-body"
+>
+  <div class="modal-dialog modal-dialog-centered dialog-wrap">
+    <div class="modal-content dialog">
+      <header class="head">
+        <div class="heading">
+          @if (image()) {
+            <img class="image" [src]="image()" alt="" width="56" height="56" />
+          }
+          @if (modalAlertData()?.title) {
+            <h2 class="title" id="modal-alert-title">{{ modalAlertData()?.title }}</h2>
+          }
+        </div>
+        <button type="button" class="close" aria-label="Cerrar" (click)="handleCloseModal()">
+          <ng-icon name="phosphorX" size="1.5rem" color="var(--light-greyscale-icons)" />
+        </button>
+      </header>
+
+      <div class="body" id="modal-alert-body">
+        <p class="description">{{ modalAlertData()?.description }}</p>
+      </div>
+
+      <div class="actions">
+        <app-button
+          variant="primary"
+          size="md"
+          id="modal-alert-btn-action"
+          (click)="handleCloseModal()"
+        >
+          {{ buttonLabel() }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div>

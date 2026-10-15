@@ -1,0 +1,56 @@
+@if (opened()) {
+  <div class="modal-backdrop fade show"></div>
+}
+
+<div
+  class="modal fade"
+  [class.show]="opened()"
+  role="dialog"
+  aria-modal="true"
+  tabindex="-1"
+  [attr.aria-labelledby]="title() ? titleId() : null"
+  [attr.aria-describedby]="bodyId()"
+  [attr.aria-hidden]="opened() ? null : true"
+>
+  <div class="modal-dialog modal-dialog-centered dialog-wrap" [attr.data-size]="size()">
+    <div class="modal-content dialog">
+      <header class="head">
+        @if (title()) {
+          <h2 class="title" [id]="titleId()">{{ title() }}</h2>
+        }
+        <button type="button" class="close" aria-label="Cerrar" (click)="onClose()">
+          <ng-icon name="phosphorX" size="1.5rem" color="var(--light-greyscale-icons)" />
+        </button>
+      </header>
+
+      <div class="body" [id]="bodyId()">
+        <ng-content></ng-content>
+      </div>
+
+      @if (nameButtonClose() || nameButtonAction()) {
+        <div class="actions">
+          @if (nameButtonClose()) {
+            <app-button
+              variant="secondary"
+              size="md"
+              [id]="id() + '-btn-close'"
+              (click)="onClose()"
+            >
+              {{ nameButtonClose() }}
+            </app-button>
+          }
+          @if (nameButtonAction()) {
+            <app-button
+              variant="primary"
+              size="md"
+              [id]="id() + '-btn-action'"
+              (click)="onAction()"
+            >
+              {{ nameButtonAction() }}
+            </app-button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
