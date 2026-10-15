@@ -1,0 +1,80 @@
+:host {
+  display: inline-flex;
+}
+
+.option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-md);
+  margin: 0;
+  cursor: pointer;
+
+  &:has(.native:disabled) {
+    cursor: not-allowed;
+  }
+}
+
+.native {
+  position: absolute;
+  width: var(--size-lg);
+  height: var(--size-lg);
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.mark {
+  display: inline-flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--size-lg);
+  height: var(--size-lg);
+  border: 2px solid var(--light-greyscale-stroke);
+  border-radius: 50%;
+  background: var(--light-greyscale-white);
+}
+
+.native:checked + .mark {
+  border-width: var(--size-xxs);
+  border-color: var(--light-assents-accent1-primary);
+}
+
+.option:hover .native:not(:disabled, :checked) + .mark {
+  border-color: var(--light-assents-state-hover);
+}
+
+.option:hover .native:checked:not(:disabled) + .mark {
+  border-color: var(--light-assents-state-hover);
+}
+
+.option:active .native:checked:not(:disabled) + .mark {
+  border-color: var(--light-assents-state-click);
+}
+
+.native:focus-visible + .mark {
+  outline: 1px solid var(--light-assents-accent2-focus);
+  outline-offset: 2px;
+}
+
+.native:disabled + .mark {
+  border-color: var(--light-greyscale-disabled-text);
+  background: var(--light-greyscale-disabled-bg);
+}
+
+.native:checked:disabled + .mark {
+  border-color: var(--light-greyscale-disabled-text);
+  background: var(--light-greyscale-white);
+}
+
+.text {
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-md);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-md);
+}
+
+.native:disabled ~ .text {
+  color: var(--light-greyscale-disabled-text);
+}

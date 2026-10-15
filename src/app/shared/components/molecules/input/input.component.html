@@ -1,0 +1,59 @@
+<div class="field">
+  @if (label()) {
+    <label class="label" [attr.for]="fieldId">
+      {{ label() }}
+      @if (required()) {
+        <span class="required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+  <div class="box">
+    <div
+      class="control"
+      [attr.data-type]="type()"
+      [attr.data-error]="errorMessage() ? 'true' : null"
+    >
+      @if (icon() === 'left' && iconName()) {
+        <ng-icon [name]="iconName()" size="1rem" [color]="iconColor()" aria-hidden="true" />
+      }
+      @if (type() === 'textarea') {
+        <textarea
+          [id]="fieldId"
+          class="native"
+          [value]="value()"
+          [placeholder]="placeholder()"
+          [required]="required()"
+          [disabled]="disabled()"
+          [attr.maxlength]="maxLength()"
+          [attr.aria-invalid]="errorMessage() ? true : null"
+          [attr.aria-describedby]="errorMessage() || maxLength() ? helperId : null"
+          (input)="onInput($event)"
+          (blur)="onBlur()"
+        ></textarea>
+      } @else {
+        <input
+          [id]="fieldId"
+          class="native"
+          [type]="type()"
+          [value]="value()"
+          [placeholder]="placeholder()"
+          [required]="required()"
+          [disabled]="disabled()"
+          [attr.maxlength]="maxLength()"
+          [attr.aria-invalid]="errorMessage() ? true : null"
+          [attr.aria-describedby]="errorMessage() || maxLength() ? helperId : null"
+          (input)="onInput($event)"
+          (blur)="onBlur()"
+        />
+      }
+      @if (icon() === 'right' && iconName()) {
+        <ng-icon [name]="iconName()" size="1rem" [color]="iconColor()" aria-hidden="true" />
+      }
+    </div>
+    @if (errorMessage(); as message) {
+      <p class="helper helper-error" [id]="helperId">{{ message }}</p>
+    } @else if (maxLength()) {
+      <p class="helper helper-counter" [id]="helperId">{{ value().length }}/{{ maxLength() }}</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<label class="option">
+  <input
+    [id]="fieldId"
+    class="native"
+    type="checkbox"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    (change)="onToggle($event)"
+    (blur)="onBlur()"
+  />
+  <span class="mark" aria-hidden="true">
+    @if (checked()) {
+      <ng-icon name="phosphorCheck" size="1rem" color="var(--light-greyscale-white)" />
+    }
+  </span>
+  @if (label()) {
+    <span class="text">{{ label() }}</span>
+  }
+</label>

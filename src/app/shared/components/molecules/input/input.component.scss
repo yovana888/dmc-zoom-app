@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-mm);
+  width: 100%;
+}
+
+.label {
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-md);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-md);
+}
+
+.required {
+  margin-left: var(--size-xs);
+  color: var(--light-system-error-error);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  width: 100%;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+  width: 100%;
+  padding: var(--size-md);
+  border: 1px solid transparent;
+  border-radius: var(--size-sm);
+  background: var(--light-greyscale-bg-darken);
+
+  &:focus-within {
+    border-color: var(--light-assents-accent2-focus);
+  }
+
+  &:has(.native:disabled) {
+    background: var(--light-greyscale-disabled-bg);
+  }
+}
+
+.control[data-type='textarea'] {
+  align-items: flex-start;
+}
+
+.control[data-error='true'],
+.control[data-error='true']:focus-within {
+  border-color: var(--light-system-error-error);
+}
+
+.native {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-sm);
+  resize: vertical;
+
+  &::placeholder {
+    color: var(--light-greyscale-text-secondary);
+  }
+
+  &:disabled {
+    color: var(--light-greyscale-disabled-text);
+    cursor: not-allowed;
+  }
+}
+
+textarea.native {
+  min-height: 6rem;
+}
+
+.helper {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-xs);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-xs);
+}
+
+.helper-counter {
+  color: var(--light-greyscale-text-secondary);
+  text-align: end;
+}
+
+.helper-error {
+  color: var(--light-system-error-error);
+}
