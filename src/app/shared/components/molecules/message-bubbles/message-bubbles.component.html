@@ -1,0 +1,12 @@
+<div class="column">
+  <div class="d-flex align-items-end gap-3">
+    @if (sender() === 'agent') {
+      <app-avatar type="photo" size="32" [src]="avatarImage()" alt="Asistente" />
+    }
+    <div class="message"><ng-content /></div>
+    @if (sender() === 'user') {
+      <app-avatar [type]="avatarType()" size="32" [src]="avatarImage()" alt="" />
+    }
+  </div>
+  <time class="time">{{ time() }}</time>
+</div>

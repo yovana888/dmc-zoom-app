@@ -1,0 +1,13 @@
+@for (star of stars(); track star.value) {
+  <button
+    type="button"
+    class="star d-inline-flex border-0 bg-transparent p-0"
+    role="radio"
+    [attr.aria-checked]="star.checked"
+    [attr.aria-label]="star.label"
+    (mouseenter)="preview(star.value)"
+    (click)="select(star.value)"
+  >
+    <img [src]="star.icon" alt="" width="24" height="24" />
+  </button>
+}

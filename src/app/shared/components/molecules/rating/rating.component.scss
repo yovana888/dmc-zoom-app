@@ -1,0 +1,23 @@
+.star {
+  cursor: pointer;
+  line-height: 0;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--light-assents-accent2-focus);
+    outline-offset: 2px;
+    border-radius: var(--size-xs);
+  }
+}
