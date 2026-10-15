@@ -5,8 +5,10 @@
     }
     <div class="message"><ng-content /></div>
     @if (sender() === 'user') {
-      <app-avatar [type]="avatarType()" size="32" [src]="avatarImage()" alt="" />
+      <app-avatar type="initial" size="32" [initials]="userInitials()" [alt]="username()" />
     }
   </div>
-  <time class="time">{{ time() }}</time>
+  @if (showTime()) {
+    <time class="time">{{ time() }}</time>
+  }
 </div>

@@ -1,0 +1,18 @@
+<section class="panel">
+  <app-assistant-header title="Especialización Big data" classNumber="5" />
+
+  <div class="navigation">
+    <app-tabs>
+      @for (tab of tabs(); track tab.value) {
+        <app-tab [selected]="section() === tab.value" (click)="selectSection(tab.value)">
+          {{ tab.label }}
+        </app-tab>
+      }
+    </app-tabs>
+  </div>
+
+  @if (section() === 'assistant') {
+    <app-tab-assistant />
+    <app-chat-input (handleSendMessage)="handleSendMessage($event)" />
+  }
+</section>

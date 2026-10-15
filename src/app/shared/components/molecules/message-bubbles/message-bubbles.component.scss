@@ -21,6 +21,7 @@
   font-size: var(--typography-size-sm);
   font-weight: var(--typography-weight-regular);
   line-height: var(--typography-line-height-sm);
+  white-space: pre-line;
 }
 
 :host([data-sender='agent']) .message {

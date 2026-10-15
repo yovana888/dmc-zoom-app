@@ -1,0 +1,28 @@
+<div class="composer">
+  <input
+    class="field"
+    type="text"
+    placeholder="Escriba un mensaje"
+    [value]="text()"
+    (input)="onInput($event)"
+    (keydown.enter)="onEnter($event)"
+    [disabled]="isLoading()"
+  />
+  <div class="actions">
+    <app-button-icon
+      [disabled]="isLoading()"
+      variant="secondary"
+      size="sm"
+      iconName="phosphorCopy"
+      label="Copiar"
+    />
+    <app-button-icon
+      [disabled]="isLoading()"
+      variant="secondary"
+      size="sm"
+      iconName="phosphorPaperPlaneTilt"
+      label="Enviar"
+      (click)="emitMessage()"
+    />
+  </div>
+</div>

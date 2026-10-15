@@ -1,3 +1,7 @@
 :host {
   display: contents;
 }
+
+.tablist {
+  gap: var(--tabs-gap, var(--size-sm));
+}

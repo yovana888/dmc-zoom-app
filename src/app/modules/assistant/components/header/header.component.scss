@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-mm);
+}
+
+.title {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-lg);
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-line-height-lg);
+}
+
+.class-chip {
+  --chip-outline-border: var(--light-assents-state-hover);
+  --chip-outline-color: var(--light-assents-state-hover);
+}

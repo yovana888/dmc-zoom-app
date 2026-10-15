@@ -60,8 +60,8 @@
 }
 
 .chip[data-style='outline'] {
-  border-color: var(--light-greyscale-dividers);
-  color: var(--light-greyscale-text-secondary);
+  border-color: var(--chip-outline-border, var(--light-greyscale-dividers));
+  color: var(--chip-outline-color, var(--light-greyscale-text-secondary));
 
   &:hover:not(:disabled) {
     border-color: var(--light-assents-state-hover);

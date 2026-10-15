@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+  width: 100%;
+  padding: var(--size-md);
+  border-radius: var(--size-sm);
+  background: var(--light-greyscale-bg-darken);
+}
+
+.field {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-sm);
+
+  &::placeholder {
+    color: var(--light-greyscale-text-secondary);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--size-sm);
+}
