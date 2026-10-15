@@ -1,0 +1,31 @@
+<a
+  class="link"
+  [attr.href]="disabled() ? null : href()"
+  [attr.data-size]="size()"
+  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [attr.tabindex]="disabled() ? -1 : null"
+  (click)="onClick($event)"
+>
+  <span class="content">
+    @if (icon() === 'left' && iconName()) {
+      <ng-icon
+        [name]="iconName()"
+        [size]="iconSize()"
+        [color]="resolvedColor()"
+        [strokeWidth]="strokeWidth()"
+        aria-hidden="true"
+      />
+    }
+    <span class="label"><ng-content /></span>
+    @if (icon() === 'right' && iconName()) {
+      <ng-icon
+        [name]="iconName()"
+        [size]="iconSize()"
+        [color]="resolvedColor()"
+        [strokeWidth]="strokeWidth()"
+        aria-hidden="true"
+      />
+    }
+  </span>
+  <span class="underline" aria-hidden="true"></span>
+</a>

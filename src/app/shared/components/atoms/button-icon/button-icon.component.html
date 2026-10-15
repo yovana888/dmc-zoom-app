@@ -1,0 +1,18 @@
+<button
+  class="button"
+  type="button"
+  [attr.aria-label]="label()"
+  [attr.aria-pressed]="active()"
+  [attr.data-variant]="variant()"
+  [attr.data-size]="size()"
+  [attr.data-active]="active() ? 'true' : null"
+  [disabled]="disabled()"
+>
+  <ng-icon
+    [name]="iconName()"
+    [size]="iconSize()"
+    [color]="resolvedColor()"
+    [strokeWidth]="strokeWidth()"
+    aria-hidden="true"
+  />
+</button>

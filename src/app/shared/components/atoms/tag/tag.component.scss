@@ -1,0 +1,36 @@
+:host {
+  display: inline-flex;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem var(--size-sm);
+  border-radius: var(--size-xs);
+  background: var(--light-assents-accent3-primary);
+  color: var(--light-greyscale-white);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-line-height-sm);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tag[data-variant='beta'] {
+  background: var(--light-assents-accent2-focus);
+}
+
+.tag[data-variant='admin'] {
+  background: var(--light-assents-accent1-primary);
+}
+
+.tag[data-variant='alpha'] {
+  background: var(--light-greyscale-bg-darken);
+  color: var(--light-greyscale-text-secondary);
+}
+
+.tag[data-variant='dark'] {
+  background: var(--light-greyscale-bg-zoom-tag);
+}

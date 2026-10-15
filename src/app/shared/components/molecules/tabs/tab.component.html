@@ -1,0 +1,17 @@
+<button
+  type="button"
+  class="tab"
+  role="tab"
+  [attr.aria-selected]="selected()"
+  [attr.data-selected]="selected()"
+  [attr.data-icon]="iconName() ? 'left' : 'none'"
+  [disabled]="disabled()"
+>
+  <span class="content">
+    @if (iconName()) {
+      <ng-icon [name]="iconName()" size="1rem" [color]="iconColor()" aria-hidden="true" />
+    }
+    <span class="label"><ng-content /></span>
+  </span>
+  <span class="underline" aria-hidden="true"></span>
+</button>

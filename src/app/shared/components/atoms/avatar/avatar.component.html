@@ -1,0 +1,24 @@
+@if (type() === 'add') {
+  <button type="button" class="face" [attr.aria-label]="addLabel()">
+    <ng-icon name="phosphorPlus" [size]="iconSize()" [color]="iconColor()" aria-hidden="true" />
+  </button>
+} @else {
+  <span class="face">
+    @switch (type()) {
+      @case ('photo') {
+        @if (src()) {
+          <img class="photo" [src]="src()" [alt]="alt()" />
+        }
+      }
+      @case ('initial') {
+        <span class="initials">{{ initials() }}</span>
+      }
+      @default {
+        <ng-icon name="phosphorUser" [size]="iconSize()" [color]="iconColor()" aria-hidden="true" />
+      }
+    }
+  </span>
+}
+@if (showIndicator()) {
+  <span class="indicator" [attr.data-state]="indicator()"></span>
+}
