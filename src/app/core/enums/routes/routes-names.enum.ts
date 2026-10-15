@@ -5,18 +5,9 @@ export enum RouteTransversalEnum {
 }
 
 export enum RouteNamesEnum {
-  AUTH = 'login',
-  AGENT = 'agente-rigo',
-  HISTORY = 'historial',
-  PORTAL = 'portal',
-  REQUEST = 'solicitudes',
-  SESION_EXPIRED = 'sesion-expirada',
+  ASSISTANT = 'asistente',
 }
 
 export enum ModuleNamesEnum {
-  HISTORY = 'Historial',
-  REQUEST = 'Solicitudes pendientes',
-  RIGO = 'RIGO',
-  AGENT = 'AGENTE',
-  REPORT = 'Reporte',
+  ASSISTANT = 'Asistente',
 }
