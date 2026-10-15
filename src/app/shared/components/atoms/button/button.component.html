@@ -7,10 +7,22 @@
   [disabled]="disabled()"
 >
   @if (icon() === 'left' && iconName()) {
-    <ng-icon [svg]="iconName()" [size]="iconSize()" aria-hidden="true" />
+    <ng-icon
+      [name]="iconName()"
+      [size]="iconSize()"
+      [color]="iconColor()"
+      [strokeWidth]="strokeWidth()"
+      aria-hidden="true"
+    />
   }
   <span class="label"><ng-content /></span>
   @if (icon() === 'right' && iconName()) {
-    <ng-icon [svg]="iconName()" [size]="iconSize()" aria-hidden="true" />
+    <ng-icon
+      [name]="iconName()"
+      [size]="iconSize()"
+      [color]="iconColor()"
+      [strokeWidth]="strokeWidth()"
+      aria-hidden="true"
+    />
   }
 </button>

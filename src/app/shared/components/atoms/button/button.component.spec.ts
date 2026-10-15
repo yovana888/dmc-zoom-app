@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NgIcon } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { phosphorWarehouseBold } from '@ng-icons/phosphor-icons/bold';
 import { phosphorPlus } from '@ng-icons/phosphor-icons/regular';
 import { ButtonComponent } from './button.component';
@@ -10,6 +10,7 @@ import { ButtonIcon, ButtonSize, ButtonVariant } from './button.type';
 @Component({
   selector: 'app-button-host',
   imports: [ButtonComponent],
+  providers: [provideIcons({ phosphorPlus, phosphorWarehouseBold })],
   template: `
     <app-button
       [variant]="variant"
@@ -58,7 +59,7 @@ describe('ButtonComponent', () => {
 
   it('should render the named Phosphor icon on the left', () => {
     host.icon = 'left';
-    host.iconName = phosphorPlus;
+    host.iconName = 'phosphorPlus';
     host.variant = 'secondary';
     host.size = 'sm';
     fixture.detectChanges();
@@ -68,21 +69,21 @@ describe('ButtonComponent', () => {
 
     expect(button.getAttribute('data-variant')).toBe('secondary');
     expect(button.getAttribute('data-size')).toBe('sm');
-    expect(icon.svg()).toBe(phosphorPlus);
+    expect(icon.name()).toBe('phosphorPlus');
     expect(icon.size()).toBe('1rem');
     expect(button.firstElementChild?.tagName.toLowerCase()).toBe('ng-icon');
   });
 
   it('should render the named Phosphor icon on the right', () => {
     host.icon = 'right';
-    host.iconName = phosphorWarehouseBold;
+    host.iconName = 'phosphorWarehouseBold';
     host.size = 'xs';
     fixture.detectChanges();
 
     const button = buttonElement();
     const icon = iconComponent();
 
-    expect(icon.svg()).toBe(phosphorWarehouseBold);
+    expect(icon.name()).toBe('phosphorWarehouseBold');
     expect(icon.size()).toBe('1rem');
     expect(button.lastElementChild?.tagName.toLowerCase()).toBe('ng-icon');
   });

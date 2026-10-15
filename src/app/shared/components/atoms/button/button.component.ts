@@ -21,6 +21,8 @@ export class ButtonComponent {
   readonly size = input<ButtonSize>('lg');
   readonly icon = input<ButtonIcon>('none');
   readonly iconName = input('');
+  readonly iconColor = input<string>();
+  readonly strokeWidth = input<string | number>();
   readonly full = input(false);
   readonly disabled = input(false);
 
