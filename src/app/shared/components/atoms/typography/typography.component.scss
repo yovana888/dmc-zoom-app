@@ -1,0 +1,30 @@
+:host {
+  display: inline;
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-md);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-md);
+}
+
+:host([data-size='lg']) {
+  font-size: var(--typography-size-lg);
+  line-height: var(--typography-line-height-lg);
+}
+
+:host([data-size='sm']) {
+  font-size: var(--typography-size-sm);
+  line-height: var(--typography-line-height-sm);
+}
+
+:host([data-size='xs']) {
+  font-size: var(--typography-size-xs);
+  line-height: var(--typography-line-height-xs);
+}
+
+:host([data-weight='bold']) {
+  font-weight: var(--typography-weight-bold);
+}
+
+:host([data-weight='extrabold']) {
+  font-weight: var(--typography-weight-extrabold);
+}

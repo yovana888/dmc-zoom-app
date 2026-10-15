@@ -1,0 +1,141 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "coverage/",
+    "projects/**/*",
+    "jest.config.js",
+    "setup-jest.ts"
+  ],
+  "extends": ["plugin:prettier/recommended"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json", "tsconfig.app.json", "tsconfig.spec.json"],
+        "sourceType": "module"
+      },
+      "plugins": ["@typescript-eslint", "@angular-eslint"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "max-lines": ["error", { "max": 400, "skipBlankLines": true, "skipComments": true }],
+        "max-lines-per-function": [
+          "error",
+          { "max": 40, "skipBlankLines": true, "skipComments": true }
+        ],
+        "complexity": ["error", 12],
+        "max-params": ["error", 4],
+        "init-declarations": ["error", "always"],
+        "no-magic-numbers": "off",
+        "@typescript-eslint/no-magic-numbers": [
+          "error",
+          {
+            "ignore": [0, 1],
+            "ignoreEnums": true,
+            "ignoreArrayIndexes": true,
+            "ignoreDefaultValues": true,
+            "detectObjects": true,
+            "enforceConst": true
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "caughtErrorsIgnorePattern": "^_"
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-empty-function": "error",
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "error",
+        "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          { "selector": "class", "format": ["PascalCase"] },
+          { "selector": "interface", "format": ["PascalCase"] },
+          { "selector": "typeAlias", "format": ["PascalCase"] },
+          { "selector": "enum", "format": ["PascalCase"] },
+          { "selector": "enumMember", "format": ["UPPER_CASE"] },
+          { "selector": "variable", "format": ["camelCase", "UPPER_CASE"] },
+          {
+            "selector": "property",
+            "format": ["camelCase"],
+            "leadingUnderscore": "allow"
+          },
+          { "selector": "parameter", "format": ["camelCase"] },
+          { "selector": "method", "format": ["camelCase"] },
+          { "selector": "function", "format": ["camelCase"] }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": "error",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "CallExpression[callee.name='setTimeout']",
+            "message": "Use RxJS timer instead of setTimeout."
+          },
+          {
+            "selector": "CallExpression[callee.name='setInterval']",
+            "message": "Use RxJS interval instead of setInterval."
+          },
+          {
+            "selector": "MemberExpression[object.name='window']",
+            "message": "Avoid using window directly. Use Angular abstractions or RxJS."
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.component.ts"],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          { "type": "element", "prefix": "app", "style": "kebab-case" }
+        ]
+      }
+    },
+    {
+      "files": ["*.directive.ts"],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          { "type": "attribute", "prefix": "app", "style": "camelCase" }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {
+        "max-len": ["error", { "code": 140 }]
+      }
+    },
+    {
+      "files": ["**/*.spec.ts"],
+      "plugins": ["jest"],
+      "env": { "jest": true },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "init-declarations": "off",
+        "no-magic-numbers": "off",
+        "max-lines": "off",
+        "max-lines-per-function": "off",
+        "jest/no-disabled-tests": "error",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error"
+      }
+    }
+  ]
+}

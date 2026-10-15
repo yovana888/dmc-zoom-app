@@ -1,0 +1,94 @@
+{
+  "name": "dmc-zoom-app",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --configuration local",
+    "local": "ng serve --configuration local",
+    "dev": "ng serve --configuration dev",
+    "cert": "ng serve --configuration cert",
+    "prod": "ng serve --configuration production",
+    "build": "ng build",
+    "build:dev": "ng build --configuration dev",
+    "build:cert": "ng build --configuration cert",
+    "build:prod": "ng build --configuration production",
+    "watch": "ng build --watch --configuration dev",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint \"src/**/*.{ts,html}\"",
+    "prepare": "node ./node_modules/husky/husky.js install"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/router": "^20.3.0",
+    "@fontsource/mulish": "^5.3.0",
+    "@ng-icons/core": "^32.5.0",
+    "@ng-icons/phosphor-icons": "^32.5.0",
+    "bootstrap": "^5.3.8",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-eslint/builder": "^20.0.0",
+    "@angular-eslint/eslint-plugin": "^20.0.0",
+    "@angular-eslint/eslint-plugin-template": "^20.0.0",
+    "@angular-eslint/template-parser": "^20.0.0",
+    "@angular/build": "^20.3.39",
+    "@angular/cli": "^20.3.39",
+    "@angular/compiler-cli": "^20.3.0",
+    "@angular/platform-browser-dynamic": "^20.3.16",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.15.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^4.3.8",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "jest-preset-angular": "^16.1.1",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
+    "pretty-quick": "^4.2.2",
+    "ts-jest": "^29.4.6",
+    "typescript": "~5.9.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css,html,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "overrides": {
+    "js-yaml": "4.3.2"
+  }
+}
