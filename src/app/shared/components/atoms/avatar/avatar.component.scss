@@ -1,0 +1,118 @@
+:host {
+  display: inline-flex;
+  position: relative;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+:host([data-size='24']) {
+  width: var(--size-lg);
+  height: var(--size-lg);
+}
+
+:host([data-size='32']) {
+  width: var(--size-xl);
+  height: var(--size-xl);
+}
+
+:host([data-size='48']) {
+  width: 3rem;
+  height: 3rem;
+}
+
+:host([data-size='56']) {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.face {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--light-greyscale-white);
+  font-family: var(--font-family-base);
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--light-assents-accent2-focus);
+    outline-offset: 2px;
+  }
+}
+
+:host([data-type='initial']) .face {
+  background: var(--light-assents-accent2-focus);
+  font-weight: var(--typography-weight-bold);
+}
+
+:host([data-type='empty']) .face {
+  background: var(--light-greyscale-disabled-bg);
+}
+
+:host([data-type='add']) .face {
+  background: var(--light-assents-accent1-quaternary);
+  cursor: pointer;
+}
+
+:host([data-size='24'][data-type='initial']) .face {
+  font-size: var(--typography-size-xs);
+  line-height: var(--typography-line-height-xs);
+}
+
+:host([data-size='32'][data-type='initial']) .face {
+  font-size: var(--typography-size-md);
+  line-height: var(--typography-line-height-md);
+}
+
+:host([data-size='48'][data-type='initial']) .face,
+:host([data-size='56'][data-type='initial']) .face {
+  font-size: 1.5rem;
+  font-weight: var(--typography-weight-extrabold);
+  line-height: 1.875rem;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initials {
+  line-height: inherit;
+}
+
+.indicator {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--light-system-error-successful);
+  box-shadow: 0 0 0 1px var(--light-greyscale-white);
+}
+
+:host([data-size='24']) .indicator,
+:host([data-size='32']) .indicator {
+  width: var(--size-xxs);
+  height: var(--size-xxs);
+}
+
+:host([data-size='48']) .indicator,
+:host([data-size='56']) .indicator {
+  width: var(--size-mm);
+  height: var(--size-mm);
+  box-shadow: 0 0 0 0.125rem var(--light-greyscale-white);
+}
+
+.indicator[data-state='offline'] {
+  background: var(--light-system-error-error);
+}
