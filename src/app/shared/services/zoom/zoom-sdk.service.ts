@@ -14,11 +14,13 @@ export class ZoomSdkService {
   private readonly runningContextState = signal<RunningContext | null>(null);
   private readonly userState = signal<GetUserContextResponse | null>(null);
   private readonly meetingState = signal<GetMeetingContextResponse | null>(null);
+  private readonly meetingUuidState = signal<string | null>(null);
 
   readonly ready = this.readyState.asReadonly();
   readonly runningContext = this.runningContextState.asReadonly();
   readonly user = this.userState.asReadonly();
   readonly meeting = this.meetingState.asReadonly();
+  readonly meetingUuid = this.meetingUuidState.asReadonly();
   readonly authorizeUrl = computed((): string => {
     /* eslint-disable @typescript-eslint/naming-convention */
     const params = new URLSearchParams({
@@ -51,7 +53,7 @@ export class ZoomSdkService {
   }
 
   private async loadContexts(): Promise<void> {
-    await Promise.all([this.loadUser(), this.loadMeeting()]);
+    await Promise.all([this.loadUser(), this.loadMeeting(), this.loadMeetingUuid()]);
   }
 
   private async loadUser(): Promise<void> {
@@ -67,6 +69,15 @@ export class ZoomSdkService {
       this.meetingState.set(await zoomSdk.getMeetingContext());
     } catch {
       this.meetingState.set(null);
+    }
+  }
+
+  private async loadMeetingUuid(): Promise<void> {
+    try {
+      const context = await zoomSdk.getMeetingUUID();
+      this.meetingUuidState.set(context.parentUUID || context.meetingUUID);
+    } catch {
+      this.meetingUuidState.set(null);
     }
   }
 }

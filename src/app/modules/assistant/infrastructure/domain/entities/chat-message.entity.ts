@@ -14,6 +14,6 @@ export interface ChatMessage {
   type: TypeChatItemEnum;
 }
 
-export type AssistantSection = 'assistant' | 'material' | 'transcript';
+export type AssistantSection = 'assistant' | 'visual' | 'notes' | 'transcript';
 
 export type ChatMessageTemplateFactory = (username: string) => ChatMessage;

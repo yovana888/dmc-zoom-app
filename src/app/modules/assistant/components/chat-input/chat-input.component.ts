@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
 import { WebchatStore } from '@modules/assistant/infrastructure/store/webchat-store';
 import { provideIcons } from '@ng-icons/core';
 import { phosphorCopy, phosphorPaperPlaneTilt } from '@ng-icons/phosphor-icons/regular';
@@ -13,7 +13,9 @@ import { ButtonIconComponent } from '@shared/components/atoms/button-icon/button
   providers: [provideIcons({ phosphorCopy, phosphorPaperPlaneTilt })],
 })
 export class ChatInputComponent {
+  readonly showSummary = input(true);
   readonly handleSendMessage = output<string>();
+  readonly summarize = output<void>();
 
   protected readonly text = signal('');
   private readonly webchatStore = inject(WebchatStore);

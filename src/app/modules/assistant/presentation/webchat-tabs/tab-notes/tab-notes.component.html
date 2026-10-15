@@ -1,0 +1,10 @@
+<div class="notes">
+  @for (note of notes(); track note.uuid) {
+    <article class="entry">
+      <app-note-card [text]="note.text" [tone]="tone(note.uuid)" (remove)="removeNote(note.uuid)" />
+      <time class="hour">{{ note.hour }}</time>
+    </article>
+  }
+</div>
+
+<app-chat-input [showSummary]="false" (handleSendMessage)="addNote($event)" />

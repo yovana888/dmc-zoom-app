@@ -9,13 +9,16 @@
     [disabled]="isLoading()"
   />
   <div class="actions">
-    <app-button-icon
-      [disabled]="isLoading()"
-      variant="secondary"
-      size="sm"
-      iconName="phosphorCopy"
-      label="Copiar"
-    />
+    @if (showSummary()) {
+      <app-button-icon
+        [disabled]="isLoading()"
+        variant="secondary"
+        size="sm"
+        iconName="phosphorCopy"
+        label="Resumen rápido"
+        (handleClick)="summarize.emit()"
+      />
+    }
     <app-button-icon
       [disabled]="isLoading()"
       variant="secondary"

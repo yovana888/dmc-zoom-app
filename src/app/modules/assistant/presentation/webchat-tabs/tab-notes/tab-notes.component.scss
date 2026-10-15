@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--size-lg);
+  min-height: 0;
+}
+
+.notes {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--size-lg);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-xs);
+  width: 100%;
+}
+
+.hour {
+  color: var(--light-greyscale-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-xs);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-xs);
+}

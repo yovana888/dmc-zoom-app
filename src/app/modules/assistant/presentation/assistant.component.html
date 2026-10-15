@@ -1,5 +1,5 @@
 <section class="panel">
-  <app-assistant-header title="Especialización Big data" classNumber="5" />
+  <app-assistant-header [title]="courseTitle()" [classNumber]="classNumber()" />
 
   <div class="navigation">
     <app-tabs>
@@ -12,7 +12,17 @@
   </div>
 
   @if (section() === 'assistant') {
-    <app-tab-assistant />
-    <app-chat-input (handleSendMessage)="handleSendMessage($event)" />
+    <app-tab-assistant (summarize)="summarizeNow()" />
+    <app-chat-input (handleSendMessage)="handleSendMessage($event)" (summarize)="summarizeNow()" />
   }
+
+  @if (section() === 'visual') {
+    <app-tab-visual />
+  }
+
+  @if (section() === 'notes') {
+    <app-tab-notes />
+  }
+
+  <app-summary-modal [summary]="expressSummary()" />
 </section>

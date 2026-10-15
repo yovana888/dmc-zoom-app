@@ -4,12 +4,16 @@ import {
   effect,
   ElementRef,
   inject,
+  output,
   ViewChild,
 } from '@angular/core';
 import { ChipsComponent } from '@shared/components/atoms/chips/chips.component';
 import { MessageBubblesComponent } from '@shared/components/molecules/message-bubbles/message-bubbles.component';
 import { ChatChip } from '../../../infrastructure/domain/entities/chat-message.entity';
-import { TypeChatItemEnum } from '../../../infrastructure/domain/enums/assistant.enum';
+import {
+  AssistantConversationEnum,
+  TypeChatItemEnum,
+} from '../../../infrastructure/domain/enums/assistant.enum';
 import { WebchatStore } from '../../../infrastructure/store/webchat-store';
 
 @Component({
@@ -21,6 +25,8 @@ import { WebchatStore } from '../../../infrastructure/store/webchat-store';
 })
 export class TabAssistantComponent {
   @ViewChild('chat') chat!: ElementRef<HTMLElement>;
+
+  readonly summarize = output<void>();
 
   private readonly webchatStore = inject(WebchatStore);
   protected readonly messages = this.webchatStore.messages;
@@ -42,6 +48,10 @@ export class TabAssistantComponent {
       chips: [],
       type: TypeChatItemEnum.TEXT,
     });
+
+    if (chip.value === AssistantConversationEnum.SUMMARIZE_TRANSCRIPT) {
+      this.summarize.emit();
+    }
   }
 
   private scrollToBottom(): void {

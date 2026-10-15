@@ -22,6 +22,7 @@ const AGENT_IMAGE = 'logo/dmc-ia.svg';
 })
 export class MessageBubblesComponent implements OnInit {
   readonly sender = input<MessageSender>('agent');
+  readonly text = input('');
   readonly image = input('');
   readonly showTime = input(true);
   readonly username = input('');
@@ -32,6 +33,8 @@ export class MessageBubblesComponent implements OnInit {
   protected get senderAttribute(): MessageSender {
     return this.sender();
   }
+
+  protected readonly displayText = computed((): string => this.withLineBreaks(this.text()));
 
   protected readonly avatarImage = computed((): string => {
     if (this.image()) {
@@ -45,6 +48,10 @@ export class MessageBubblesComponent implements OnInit {
 
   ngOnInit(): void {
     this.time.set(this.formatTime(new Date()));
+  }
+
+  private withLineBreaks(value: string): string {
+    return value.replace(/\\r\\n|\\n|\\r/g, '\n');
   }
 
   private formatTime(date: Date): string {

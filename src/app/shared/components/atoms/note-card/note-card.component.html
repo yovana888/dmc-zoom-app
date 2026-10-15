@@ -1,0 +1,6 @@
+<article class="card" [attr.data-tone]="tone()">
+  <p class="text">{{ text() }}</p>
+  <button type="button" class="close" aria-label="Eliminar nota" (click)="remove.emit()">
+    <ng-icon name="phosphorX" size="1rem" />
+  </button>
+</article>

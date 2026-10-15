@@ -1,0 +1,5 @@
+<div class="visual">
+  @for (chip of chips; track chip.tone) {
+    <button class="chip" type="button" [attr.data-tone]="chip.tone">{{ chip.label }}</button>
+  }
+</div>

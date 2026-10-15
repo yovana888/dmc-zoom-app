@@ -1,8 +1,11 @@
 <div class="chat" #chat>
   @for (message of messages(); track message.id) {
-    <app-message-bubbles [sender]="message.sender" [username]="username()" [showTime]="true">
-      {{ message.text }}
-    </app-message-bubbles>
+    <app-message-bubbles
+      [sender]="message.sender"
+      [username]="username()"
+      [showTime]="true"
+      [text]="message.text"
+    />
     @if (message.chips.length) {
       <div class="chips" [attr.data-sender]="message.sender">
         @for (chip of message.chips; track chip.value) {
