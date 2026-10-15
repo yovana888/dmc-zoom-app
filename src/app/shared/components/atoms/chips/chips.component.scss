@@ -1,0 +1,92 @@
+:host {
+  display: inline-flex;
+}
+
+.chip {
+  --chip-padding-y-image: 0.3125rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-mm);
+  margin: 0;
+  padding: var(--size-sm) var(--size-lg);
+  border: 1px solid transparent;
+  border-radius: var(--size-sm);
+  background: transparent;
+  color: var(--light-assents-accent1-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.125rem;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--light-assents-accent2-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.chip[data-icon='image'] {
+  padding: var(--chip-padding-y-image) var(--size-lg) var(--chip-padding-y-image) var(--size-sm);
+}
+
+.chip[data-style='filled'] {
+  background: var(--light-assents-accent1-quaternary);
+  border-color: var(--light-assents-accent1-quaternary);
+
+  &:hover:not(:disabled) {
+    color: var(--light-assents-state-hover);
+  }
+
+  &:active:not(:disabled) {
+    color: var(--light-assents-state-click);
+  }
+
+  &:disabled {
+    background: var(--light-greyscale-disabled-bg);
+    border-color: var(--light-greyscale-disabled-bg);
+    color: var(--light-greyscale-disabled-text);
+  }
+}
+
+.chip[data-style='outline'] {
+  border-color: var(--light-greyscale-dividers);
+  color: var(--light-greyscale-text-secondary);
+
+  &:hover:not(:disabled) {
+    border-color: var(--light-assents-state-hover);
+    color: var(--light-assents-state-hover);
+  }
+
+  &:active:not(:disabled) {
+    border-color: var(--light-assents-state-click);
+    color: var(--light-assents-state-click);
+  }
+
+  &:disabled {
+    background: var(--light-greyscale-disabled-bg);
+    border-color: var(--light-greyscale-disabled-bg);
+    color: var(--light-greyscale-disabled-text);
+  }
+}
+
+.image {
+  width: var(--size-lg);
+  height: var(--size-lg);
+  border-radius: var(--size-xs);
+  object-fit: cover;
+}
+
+.label {
+  display: inline-flex;
+}

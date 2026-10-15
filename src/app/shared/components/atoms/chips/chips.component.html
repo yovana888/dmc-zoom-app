@@ -1,0 +1,18 @@
+<button
+  class="chip"
+  type="button"
+  [attr.data-style]="style()"
+  [attr.data-icon]="icon()"
+  [disabled]="disabled()"
+>
+  @if (icon() === 'image' && image()) {
+    <img class="image" [src]="image()" [alt]="imageAlt()" />
+  }
+  @if (icon() === 'left' && iconName()) {
+    <ng-icon [name]="iconName()" size="1rem" aria-hidden="true" />
+  }
+  <span class="label"><ng-content /></span>
+  @if (icon() === 'right' && iconName()) {
+    <ng-icon [name]="iconName()" size="1rem" aria-hidden="true" />
+  }
+</button>
