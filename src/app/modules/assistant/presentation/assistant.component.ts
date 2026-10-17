@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { AssistantRoleEnum } from '@core/enums/modules/roles.enum';
+import { apiErrorMessage } from '@core/utils/api-error.util';
 import { ModalMessageService } from '@shared/services/modal-message/modal-message.service';
 import { ZoomSdkService } from '@shared/services/zoom/zoom-sdk.service';
 import { TabComponent } from '@shared/components/molecules/tabs/tab.component';
@@ -86,6 +87,8 @@ export class AssistantComponent implements OnInit {
     this.rememberZoomUser();
     const request = this.sessionRequest();
     if (!request) {
+      console.warn('[assistant] no Zoom meeting id available, session/details was not called');
+      this.addMessage('agent', this.zoomDiagnostics('Sin id de reunión, no se llamó al back.'));
       this.appendWelcomeMessage();
       return;
     }
@@ -93,12 +96,19 @@ export class AssistantComponent implements OnInit {
     this.webchatStore.setIsLoading(true);
     try {
       this.webchatStore.applySession(await firstValueFrom(this.sessionDetails.details(request)));
-    } catch {
+    } catch (error: unknown) {
       // The welcome still opens when the class cannot be resolved.
+      console.error('[assistant] session/details failed', request, error);
+      this.addMessage('agent', `session/details falló: ${JSON.stringify(error)}`);
     } finally {
       this.webchatStore.setIsLoading(false);
       this.appendWelcomeMessage();
     }
+  }
+
+  private zoomDiagnostics(headline: string): string {
+    const lines = this.zoomSdk.diagnostics();
+    return [headline, ...lines].join('\n');
   }
 
   private rememberZoomUser(): void {
@@ -156,8 +166,8 @@ export class AssistantComponent implements OnInit {
     try {
       const response = await firstValueFrom(this.rag.ask(this.ragRequest(sessionId, question)));
       this.addMessage('agent', this.answerText(response));
-    } catch {
-      this.addMessage('agent', 'No pude responder esa pregunta.');
+    } catch (error: unknown) {
+      this.addMessage('agent', apiErrorMessage(error, 'No pude responder esa pregunta.'));
     } finally {
       this.webchatStore.setIsLoading(false);
     }
@@ -176,8 +186,8 @@ export class AssistantComponent implements OnInit {
         await firstValueFrom(this.summary.express(this.summaryRequest(sessionId))),
       );
       this.modalMessage.open(SUMMARY_MODAL_ID);
-    } catch {
-      this.addMessage('agent', 'No pude generar el resumen.');
+    } catch (error: unknown) {
+      this.addMessage('agent', apiErrorMessage(error, 'No pude generar el resumen.'));
     } finally {
       this.webchatStore.setIsLoading(false);
     }

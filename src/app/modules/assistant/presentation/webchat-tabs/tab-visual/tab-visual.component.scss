@@ -10,18 +10,19 @@
   align-items: flex-start;
   gap: var(--size-md);
   width: 100%;
+  padding: 2rem;
 }
 
 .chip {
-  min-width: 11rem;
+  min-width: auto;
   margin: 0;
-  padding: var(--size-lg) var(--size-xl);
+  padding: 0.5rem;
   border: 0;
-  border-radius: var(--size-md);
+  border-radius: var(--size-sm);
   color: var(--light-greyscale-white);
   font-family: var(--font-family-base);
-  font-size: var(--typography-size-md);
-  font-weight: var(--typography-weight-bold);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-medium);
   line-height: var(--typography-line-height-md);
   text-align: center;
   cursor: pointer;

@@ -17,6 +17,9 @@ export class ZoomSdkService {
   private readonly meetingState = signal<GetMeetingContextResponse | null>(null);
   private readonly meetingUuidState = signal<string | null>(null);
 
+  private readonly diagnosticsState = signal<string[]>([]);
+
+  readonly diagnostics = this.diagnosticsState.asReadonly();
   readonly ready = this.readyState.asReadonly();
   readonly runningContext = this.runningContextState.asReadonly();
   readonly user = this.userState.asReadonly();
@@ -40,10 +43,22 @@ export class ZoomSdkService {
 
       this.runningContextState.set(config.runningContext);
       this.readyState.set(true);
+      this.diagnosticsState.update((lines) => [
+        ...lines,
+        `config OK, contexto: ${config.runningContext}`,
+        `APIs no soportadas: ${JSON.stringify(config.unsupportedApis ?? [])}`,
+      ]);
       await this.loadContexts();
-    } catch {
+    } catch (error: unknown) {
+      this.report('config', error);
       this.readyState.set(false);
     }
+  }
+
+  private report(step: string, error: unknown): void {
+    console.error(`[zoom] ${step} failed`, error);
+    const detail = error instanceof Error ? error.message : JSON.stringify(error);
+    this.diagnosticsState.update((lines) => [...lines, `${step} falló: ${detail}`]);
   }
 
   async listParticipants(): Promise<Participant[]> {
@@ -69,7 +84,8 @@ export class ZoomSdkService {
   private async loadUser(): Promise<void> {
     try {
       this.userState.set(await zoomSdk.getUserContext());
-    } catch {
+    } catch (error: unknown) {
+      this.report('getUserContext', error);
       this.userState.set(null);
     }
   }
@@ -77,7 +93,8 @@ export class ZoomSdkService {
   private async loadMeeting(): Promise<void> {
     try {
       this.meetingState.set(await zoomSdk.getMeetingContext());
-    } catch {
+    } catch (error: unknown) {
+      this.report('getMeetingContext', error);
       this.meetingState.set(null);
     }
   }
@@ -86,7 +103,8 @@ export class ZoomSdkService {
     try {
       const context = await zoomSdk.getMeetingUUID();
       this.meetingUuidState.set(context.parentUUID || context.meetingUUID);
-    } catch {
+    } catch (error: unknown) {
+      this.report('getMeetingUUID', error);
       this.meetingUuidState.set(null);
     }
   }

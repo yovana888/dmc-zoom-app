@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NumberValuesEnum } from '@core/enums/list/number.enum';
+import { apiErrorMessage } from '@core/utils/api-error.util';
 import { ModalMessageService } from '@shared/services/modal-message/modal-message.service';
 import { ConnectorModel, NodeModel } from '@syncfusion/ej2-angular-diagrams';
 import { firstValueFrom } from 'rxjs';
@@ -74,8 +75,8 @@ export class TabVisualComponent {
       );
       const diagram = toMindDiagram(kit.mapa_mental_json);
       this.showMindMap(diagram.nodes, diagram.connectors, '');
-    } catch {
-      this.showMindMap([], [], 'No pude generar el mapa mental.');
+    } catch (error: unknown) {
+      this.showMindMap([], [], apiErrorMessage(error, 'No pude generar el mapa mental.'));
     } finally {
       this.webchatStore.setIsLoading(false);
     }
@@ -99,8 +100,8 @@ export class TabVisualComponent {
         this.finalKit.generate(this.kitRequest(sessionId), this.meetingMinute()),
       );
       this.showFlashcards(kit.flashcards, this.emptyFlashMessage(kit.flashcards));
-    } catch {
-      this.showFlashcards([], 'No pude generar las flashcards.');
+    } catch (error: unknown) {
+      this.showFlashcards([], apiErrorMessage(error, 'No pude generar las flashcards.'));
     } finally {
       this.webchatStore.setIsLoading(false);
     }

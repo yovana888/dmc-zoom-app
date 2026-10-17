@@ -1,8 +1,8 @@
 import { AppEnvironment } from './environment.model';
 
 export const environment: AppEnvironment = {
-  production: true,
-  apiMicroserviceIA: 'https://ia.dcm.edu.pe/api/v1',
+  production: false,
+  apiMicroserviceIA: '',
   apiKey: '',
   zoom: {
     clientId: '',

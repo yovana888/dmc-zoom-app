@@ -62,7 +62,9 @@ export class MindMapModalComponent {
     }
 
     this.fitted = true;
-    diagram.fitToPage();
+    requestAnimationFrame((): void => {
+      diagram.fitToPage();
+    });
   }
 
   private styleNode(node: NodeModel): NodeModel {

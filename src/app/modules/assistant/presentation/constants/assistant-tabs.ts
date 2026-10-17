@@ -13,10 +13,6 @@ export const ASSISTANT_TABS_STUDENT: SelectOptionModel[] = [
     label: 'Notas',
     value: 'notes',
   },
-  {
-    label: 'Transcripción',
-    value: 'transcript',
-  },
 ];
 
 export const ASSISTANT_TABS_TEACHER: SelectOptionModel[] = [

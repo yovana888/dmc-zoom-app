@@ -115,6 +115,12 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "port": 4200,
+            "proxyConfig": "proxy.conf.json",
+            "allowedHosts": ["carmen-phi-acquired-ate.trycloudflare.com"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "dmc-zoom-app:build:production"
