@@ -1,0 +1,89 @@
+<app-modal-message
+  [id]="modalId"
+  size="lg"
+  [scrollable]="true"
+  [nameButtonAction]="''"
+  [nameButtonClose]="''"
+>
+  @if (summary(); as summary) {
+    <div class="summary">
+      @if (summary.summary) {
+        <section class="block">
+          <h3 class="heading" data-tone="summary">
+            <ng-icon name="phosphorSparkle" size="1.25rem" />
+            Resumen
+          </h3>
+          <p class="copy">{{ summary.summary }}</p>
+        </section>
+      }
+
+      @if (summary.topics.length) {
+        <section class="block">
+          <h3 class="heading" data-tone="topics">
+            <ng-icon name="phosphorListBullets" size="1.25rem" />
+            Temas
+          </h3>
+          <ul class="list">
+            @for (topic of summary.topics; track $index) {
+              <li>{{ topic }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (summary.action_items.length) {
+        <section class="block">
+          <h3 class="heading" data-tone="actions">
+            <ng-icon name="phosphorCheckSquare" size="1.25rem" />
+            Acciones
+          </h3>
+          <ul class="list">
+            @for (item of summary.action_items; track $index) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (summary.key_questions.length) {
+        <section class="block">
+          <h3 class="heading" data-tone="questions">
+            <ng-icon name="phosphorQuestion" size="1.25rem" />
+            Preguntas clave
+          </h3>
+          <ul class="list">
+            @for (question of summary.key_questions; track $index) {
+              <li>{{ question }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (summary.keywords.length || summary.speakers.length) {
+        <section class="meta">
+          @if (summary.keywords.length) {
+            <div class="row">
+              <span class="label">Palabras clave</span>
+              <div class="tags">
+                @for (keyword of summary.keywords; track $index) {
+                  <span class="tag">{{ keyword }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          @if (summary.speakers.length) {
+            <div class="row">
+              <span class="label">Participantes</span>
+              <div class="tags">
+                @for (speaker of summary.speakers; track $index) {
+                  <span class="tag">{{ speaker.name }} ({{ speaker.share }}%)</span>
+                }
+              </div>
+            </div>
+          }
+        </section>
+      }
+    </div>
+  }
+</app-modal-message>

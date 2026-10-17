@@ -1,0 +1,53 @@
+<app-modal-message
+  [id]="modalId"
+  size="md"
+  title="FlashCard"
+  [nameButtonAction]="''"
+  [nameButtonClose]="''"
+>
+  @if (current(); as card) {
+    <div class="deck">
+      <div class="board">
+        <button type="button" class="scene" aria-label="Voltear tarjeta" (click)="flip()">
+          <span class="card" [class.is-flipped]="flipped()">
+            <span class="face front">{{ card.pregunta }}</span>
+            <span class="face back">{{ card.respuesta }}</span>
+          </span>
+        </button>
+        <app-button
+          variant="primary"
+          size="sm"
+          icon="left"
+          iconName="phosphorArrowsClockwise"
+          (click)="flip()"
+        >
+          Voltear
+        </app-button>
+      </div>
+
+      <div class="pager">
+        <button
+          type="button"
+          class="step"
+          aria-label="Anterior"
+          [disabled]="!canGoBack()"
+          (click)="previous()"
+        >
+          <ng-icon name="phosphorCaretLeft" size="1rem" color="var(--light-greyscale-white)" />
+        </button>
+        <span class="count">Tarjeta {{ position() }} de {{ total() }}</span>
+        <button
+          type="button"
+          class="step"
+          aria-label="Siguiente"
+          [disabled]="!canGoNext()"
+          (click)="next()"
+        >
+          <ng-icon name="phosphorCaretRight" size="1rem" color="var(--light-greyscale-white)" />
+        </button>
+      </div>
+    </div>
+  } @else if (message()) {
+    <p class="message">{{ message() }}</p>
+  }
+</app-modal-message>

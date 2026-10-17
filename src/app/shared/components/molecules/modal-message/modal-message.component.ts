@@ -30,6 +30,7 @@ export class ModalMessageComponent implements AfterViewInit {
   readonly nameButtonClose = input('');
   readonly nameButtonAction = input('Entendido');
   readonly title = input('');
+  readonly scrollable = input(false);
 
   readonly clickButtonAction = output<void>();
   readonly clickButtonClose = output<void>();

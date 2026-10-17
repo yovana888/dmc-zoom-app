@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import { ButtonIconSize, ButtonIconVariant } from './button-icon.type';
 
@@ -25,6 +25,8 @@ export class ButtonIconComponent {
   readonly strokeWidth = input<string | number>();
   readonly active = input(false);
   readonly disabled = input(false);
+  readonly handleClick = output<void>();
+  readonly imagePath = input<string>();
 
   protected readonly iconSize = computed((): string => ICON_SIZE_BY_BUTTON_SIZE[this.size()]);
   protected readonly resolvedColor = computed((): string => this.iconColor() ?? 'currentColor');

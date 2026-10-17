@@ -2,6 +2,10 @@
   display: contents;
 }
 
+.modal.show {
+  display: block;
+}
+
 .dialog-wrap {
   max-width: 30rem;
 }

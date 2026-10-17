@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { NumberValuesEnum } from '@core/enums/list/number.enum';
 import { AvatarComponent } from '@shared/components/atoms/avatar/avatar.component';
-import { AvatarType } from '@shared/components/atoms/avatar/avatar.type';
 import { MessageSender } from './message-bubbles.type';
 
 const AGENT_IMAGE = 'logo/dmc-ia.svg';
@@ -23,7 +22,10 @@ const AGENT_IMAGE = 'logo/dmc-ia.svg';
 })
 export class MessageBubblesComponent implements OnInit {
   readonly sender = input<MessageSender>('agent');
+  readonly text = input('');
   readonly image = input('');
+  readonly showTime = input(true);
+  readonly username = input('');
 
   protected readonly time = signal('');
 
@@ -31,6 +33,8 @@ export class MessageBubblesComponent implements OnInit {
   protected get senderAttribute(): MessageSender {
     return this.sender();
   }
+
+  protected readonly displayText = computed((): string => this.withLineBreaks(this.text()));
 
   protected readonly avatarImage = computed((): string => {
     if (this.image()) {
@@ -40,12 +44,14 @@ export class MessageBubblesComponent implements OnInit {
     return this.sender() === 'agent' ? AGENT_IMAGE : '';
   });
 
-  protected readonly avatarType = computed((): AvatarType =>
-    this.avatarImage() ? 'photo' : 'empty',
-  );
+  protected readonly userInitials = computed((): string => this.resolveInitials(this.username()));
 
   ngOnInit(): void {
     this.time.set(this.formatTime(new Date()));
+  }
+
+  private withLineBreaks(value: string): string {
+    return value.replace(/\\r\\n|\\n|\\r/g, '\n');
   }
 
   private formatTime(date: Date): string {
@@ -53,5 +59,18 @@ export class MessageBubblesComponent implements OnInit {
     const minutes = date.getMinutes().toString().padStart(NumberValuesEnum.TWO, '0');
 
     return `${hours}:${minutes}`;
+  }
+
+  private resolveInitials(username: string): string {
+    const parts = username
+      .trim()
+      .split(/\s+/)
+      .filter((part) => part.length > 0);
+
+    if (parts.length >= NumberValuesEnum.TWO) {
+      return `${parts[0].charAt(0)}${parts[1].charAt(0)}`.toUpperCase();
+    }
+
+    return (parts[0] ?? '').slice(0, NumberValuesEnum.TWO).toUpperCase();
   }
 }

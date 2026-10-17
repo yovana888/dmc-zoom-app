@@ -4,6 +4,7 @@
   [attr.data-style]="style()"
   [attr.data-icon]="icon()"
   [disabled]="disabled()"
+  (click)="disabled() ? null : handleClick.emit()"
 >
   @if (icon() === 'image' && image()) {
     <img class="image" [src]="image()" [alt]="imageAlt()" />

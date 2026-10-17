@@ -2,6 +2,10 @@
   display: contents;
 }
 
+.modal.show {
+  display: block;
+}
+
 .dialog-wrap[data-size='sm'] {
   max-width: 22.5rem;
 }
@@ -24,6 +28,27 @@
 .dialog-wrap[data-size='full'] .dialog {
   height: 100%;
   border-radius: 0;
+}
+
+.dialog-wrap[data-size='full'] .body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dialog-scroll {
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.dialog-scroll .head {
+  flex-shrink: 0;
+}
+
+.dialog-scroll .body {
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .dialog {

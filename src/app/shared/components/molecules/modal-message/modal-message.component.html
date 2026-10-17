@@ -13,7 +13,7 @@
   [attr.aria-hidden]="opened() ? null : true"
 >
   <div class="modal-dialog modal-dialog-centered dialog-wrap" [attr.data-size]="size()">
-    <div class="modal-content dialog">
+    <div class="modal-content dialog" [class.dialog-scroll]="scrollable()">
       <header class="head">
         @if (title()) {
           <h2 class="title" [id]="titleId()">{{ title() }}</h2>

@@ -1,0 +1,117 @@
+:host {
+  display: contents;
+}
+
+.deck {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-lg);
+  width: 100%;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-lg);
+  width: 100%;
+  padding: var(--size-xl) var(--size-lg);
+  border-radius: var(--size-md);
+  background: var(--light-assents-accent1-quaternary);
+}
+
+.scene {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 62.5rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--light-assents-accent2-focus);
+    outline-offset: 2px;
+  }
+}
+
+.card {
+  display: grid;
+  width: 100%;
+  min-height: 8rem;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-md);
+  backface-visibility: hidden;
+  color: var(--light-greyscale-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--typography-size-md);
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-line-height-md);
+  text-align: center;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.count {
+  color: var(--light-greyscale-text-secondary);
+  font-size: var(--typography-size-sm);
+  line-height: var(--typography-line-height-sm);
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-xl);
+  height: var(--size-xl);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--size-sm);
+  background: var(--light-assents-accent1-primary);
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--light-assents-accent2-focus);
+    outline-offset: 2px;
+  }
+}
+
+.message {
+  margin: 0;
+}

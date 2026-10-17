@@ -4,6 +4,8 @@ export const ZOOM_CAPABILITIES: Apis[] = [
   'getRunningContext',
   'getUserContext',
   'getMeetingContext',
+  'getMeetingParticipants',
+  'getMeetingUUID',
   'authorize',
   'onAuthorized',
 ];

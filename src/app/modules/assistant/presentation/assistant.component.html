@@ -1,0 +1,28 @@
+<section class="panel">
+  <app-assistant-header [title]="courseTitle()" [classNumber]="classNumber()" />
+
+  <div class="navigation">
+    <app-tabs>
+      @for (tab of tabs(); track tab.value) {
+        <app-tab [selected]="section() === tab.value" (click)="selectSection(tab.value)">
+          {{ tab.label }}
+        </app-tab>
+      }
+    </app-tabs>
+  </div>
+
+  @if (section() === 'assistant') {
+    <app-tab-assistant (summarize)="summarizeNow()" />
+    <app-chat-input (handleSendMessage)="handleSendMessage($event)" (summarize)="summarizeNow()" />
+  }
+
+  @if (section() === 'visual') {
+    <app-tab-visual />
+  }
+
+  @if (section() === 'notes') {
+    <app-tab-notes />
+  }
+
+  <app-summary-modal [summary]="expressSummary()" />
+</section>

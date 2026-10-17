@@ -5,7 +5,9 @@ export const routes: Routes = [
   {
     path: RouteNamesEnum.ASSISTANT,
     loadComponent: () =>
-      import('./modules/assistant/assistant.component').then((module) => module.AssistantComponent),
+      import('./modules/assistant/presentation/assistant.component').then(
+        (module) => module.AssistantComponent,
+      ),
   },
   {
     path: '',

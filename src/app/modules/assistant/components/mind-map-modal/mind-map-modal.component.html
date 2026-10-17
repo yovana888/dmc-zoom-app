@@ -1,0 +1,29 @@
+<app-modal-message
+  [id]="modalId"
+  size="full"
+  title="Mapa mental"
+  [nameButtonAction]="''"
+  [nameButtonClose]="''"
+>
+  @if (nodes().length) {
+    <div class="canvas">
+      <ejs-diagram
+        #diagram
+        width="100%"
+        height="100%"
+        [nodes]="nodes()"
+        [connectors]="connectors()"
+        [layout]="layout"
+        [tool]="tool"
+        [scrollSettings]="scrollSettings"
+        [snapSettings]="snapSettings"
+        [getNodeDefaults]="nodeDefaults"
+        [getConnectorDefaults]="connectorDefaults"
+        (created)="fitDiagram()"
+        (layoutUpdated)="fitDiagram()"
+      />
+    </div>
+  } @else if (message()) {
+    <p class="message">{{ message() }}</p>
+  }
+</app-modal-message>

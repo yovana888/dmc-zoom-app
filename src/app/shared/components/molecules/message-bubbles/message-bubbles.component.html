@@ -3,10 +3,12 @@
     @if (sender() === 'agent') {
       <app-avatar type="photo" size="32" [src]="avatarImage()" alt="Asistente" />
     }
-    <div class="message"><ng-content /></div>
+    <div class="message">{{ displayText() }}</div>
     @if (sender() === 'user') {
-      <app-avatar [type]="avatarType()" size="32" [src]="avatarImage()" alt="" />
+      <app-avatar type="initial" size="32" [initials]="userInitials()" [alt]="username()" />
     }
   </div>
-  <time class="time">{{ time() }}</time>
+  @if (showTime()) {
+    <time class="time">{{ time() }}</time>
+  }
 </div>

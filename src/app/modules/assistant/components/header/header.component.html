@@ -1,0 +1,7 @@
+<header class="header">
+  <app-button-icon variant="secondary" size="sm" iconName="phosphorCaretLeft" label="Volver" />
+  <h1 class="title">{{ title() }}</h1>
+  @if (classNumber()) {
+    <app-chips class="class-chip" [style]="'outline'">Clase N°{{ classNumber() }}</app-chips>
+  }
+</header>

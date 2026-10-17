@@ -7,12 +7,17 @@
   [attr.data-size]="size()"
   [attr.data-active]="active() ? 'true' : null"
   [disabled]="disabled()"
+  (click)="disabled() ? null : handleClick.emit()"
 >
-  <ng-icon
-    [name]="iconName()"
-    [size]="iconSize()"
-    [color]="resolvedColor()"
-    [strokeWidth]="strokeWidth()"
-    aria-hidden="true"
-  />
+  @if (imagePath()) {
+    <img class="image-icon" [src]="imagePath()" [alt]="label()" />
+  } @else {
+    <ng-icon
+      [name]="iconName()"
+      [size]="iconSize()"
+      [color]="resolvedColor()"
+      [strokeWidth]="strokeWidth()"
+      aria-hidden="true"
+    />
+  }
 </button>

@@ -1,0 +1,15 @@
+export enum TypeChatItemEnum {
+  BUTTON = 'button',
+  FILES = 'files',
+  TEXT = 'text',
+}
+
+export enum AssistantConversationEnum {
+  WELCOME_STUDENT = 'WELCOME_STUDENT',
+  WELCOME_TEACHER = 'WELCOME_TEACHER',
+  SUMMARIZE_TRANSCRIPT = 'SUMMARIZE_TRANSCRIPT',
+  SUMMARY_LAST_CLASS = 'SUMMARY_LAST_CLASS',
+
+  QUIZ_RESPONSE_TIME = 'QUIZ_RESPONSE_TIME',
+  SPINNER_WHEEL = 'SPINNER_WHEEL',
+}
