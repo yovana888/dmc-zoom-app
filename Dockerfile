@@ -1,21 +1,19 @@
-# 1. Declarar la variable de entorno de compilación (dev, cert, production, etc.)
-ARG BUILD_ENV=production
-
-# Stage 1: Build de la aplicación Angular
+# --- Etapa 1: Build de Angular ---
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Re-declarar ARG para que esté disponible en esta etapa
-ARG BUILD_ENV
+# Asignar límite estricto de memoria RAM a Node (1.5 GB)
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 
+# Copiar solo archivos de dependencias primero (aprovecha la caché de Docker)
 COPY package*.json ./
-RUN npm install
+RUN npm ci --prefer-offline --no-audit
+
+# Copiar el código fuente y compilar
 COPY . .
+RUN npx ng build --configuration=production --output-hashing=none
 
-# Compila usando la configuración que le pases por parámetro (desde JenkisFile)
-RUN npx ng build --configuration=${BUILD_ENV}
-
-# Stage 2: Servidor Web NGINX
+# --- Etapa 2: Servidor Web Nginx ---
 FROM nginx:alpine
 COPY --from=build /app/dist/dmc-zoom-app /usr/share/nginx/html
 EXPOSE 80
