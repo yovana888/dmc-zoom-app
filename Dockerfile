@@ -2,7 +2,7 @@
 ARG BUILD_ENV=production
 
 # Stage 1: Build de la aplicación Angular
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 WORKDIR /app
 
 # Re-declarar ARG para que esté disponible en esta etapa
