@@ -1,19 +1,19 @@
-# --- Etapa 1: Build de Angular ---
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Asignar límite estricto de memoria RAM a Node (1.5 GB)
+# Desactiva avisos interactivos y asigna un límite seguro de memoria RAM (1.5 GB)
+ENV CI=true
 ENV NODE_OPTIONS="--max-old-space-size=1536"
 
-# Copiar solo archivos de dependencias primero (aprovecha la caché de Docker)
+# Copia dependencias primero para usar la caché de Docker
 COPY package*.json ./
-RUN npm ci --prefer-offline --no-audit
+RUN npm ci --quiet --no-audit --no-fund
 
-# Copiar el código fuente y compilar
+# Copia el código fuente y compila rápido sin mapas de origen pesados
 COPY . .
-RUN npx ng build --configuration=production --output-hashing=none
+RUN npx ng build --configuration=production --source-map=false
 
-# --- Etapa 2: Servidor Web Nginx ---
+# Servidor Nginx para la entrega final
 FROM nginx:alpine
 COPY --from=build /app/dist/dmc-zoom-app /usr/share/nginx/html
 EXPOSE 80
